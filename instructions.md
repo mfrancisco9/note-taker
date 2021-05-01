@@ -102,20 +102,20 @@ This homework is graded based on the following criteria:
 
 ### Repository Quality: 13%
 
-* Repository has a unique name.
+* Repository has a unique name. OK
 
-* Repository follows best practices for file structure and naming conventions.
+* Repository follows best practices for file structure and naming conventions. OK
 
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
+* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc. OK
 
-* Repository contains multiple descriptive commit messages.
+* Repository contains multiple descriptive commit messages. OK
 
 * Repository contains quality README file with description, screenshot, and link to deployed application.
 
 
 ### Bonus: +10 Points
 
-* Application allows users to delete notes.
+* Application allows users to delete notes. ???????
 
 
 ## Review
