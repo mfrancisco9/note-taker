@@ -7,7 +7,7 @@ let db = require("./db/db.json");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-let savedNotes = db;
+// let savedNotes = db;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -21,30 +21,43 @@ app.get("/notes", (req, res) =>
 );
 
 
-
-// displaying notes
-
-app.get("/api/notes", (req, res) => res.json(db));
+// display notes
+app.get("/api/notes", (req, res) => {
+  fs.readFile('./db/db.json', 'utf8', function (err, data) {
+    if (err) {
+      return console.log(err)
+    }
+    console.log(data)
+    res.json(JSON.parse(data))
+  })
+});
 
 
 //posting a note
 
 app.post("/api/notes", (req, res) => {
-  const newNote = req.body;
-  newNote.id = uuid.v4();
-  console.log(newNote);
-  fs.readFile("./db/db.json", "utf8", function (err, data) {
+  fs.readFile('./db/db.json', "utf8", function (err, data) {
     if (err) throw err;
-    savedNotes.push(newNote);
-    console.log(savedNotes); 
-    fs.writeFile('db/db.json', JSON.stringify(savedNotes), function (err) {
+    
+    data = JSON.parse(data);
+    
+    let noteAdd = 
+    {
+      title: req.body.title,
+      text: req.body.text,
+      id: uuid.v4()
+    }
+
+    var myNote = data.concat(noteAdd);
+    
+    fs.writeFile('./db/db.json', JSON.stringify(myNote), function (err) {
       if (err) return console.log(err);
       console.log("Note saved");
     });
     
   });
 
-  res.json(newNote);
+  res.json(data);
 });
 
 // Delete the note
